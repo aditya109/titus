@@ -15,29 +15,20 @@ namespace WebServer.Services
         {
             _groupRepository = groupRepository;
         }
-        //public async Task<JObject> GetActiveGroups()
-        //{
-        //    try
-        //    {
-        //        dynamic result = new JObject();
-        //        var activeGroups = await _groupRepository.GetAllActiveGroups();
-        //        result.ActiveGroups = JToken.FromObject(activeGroups) as JObject;
-        //        return result;
-        //    }
-        //    catch (System.Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
+
+        public Task<JObject> GetActiveGroups()
+        {
+            throw new System.NotImplementedException();
+        }
 
         public async Task<JObject> GetAllGroups()
         {
             try
             {
                 dynamic result = new JObject();
-                //var allGroups = await _groupRepository.GetAllGroups();
-                Task<List<Egroup>> groups = (Task<List<Egroup>>)await _groupRepository.GetAllGroups();
-                result.AllGroups = JToken.FromObject() as JObject;
+                var getAllGroupsQuery = await _groupRepository.GetAllGroups;
+
+                result.AllGroups = JToken.FromObject(getAllGroupsQuery) as JObject;
                 return result;
             }
             catch (System.Exception ex)

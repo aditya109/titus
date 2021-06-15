@@ -5,8 +5,8 @@ namespace WebServer.RepositoryContracts
 {
     public interface IGroupRepository
     {
-        IQueryable<Egroup> GetAllGroups();
+        IQueryable<Egroup> GetAllGroups { get; }
 
-        IQueryable<Egroup> GetAllActiveGroups();
+        IQueryable<Egroup> GetAllActiveGroups { get; }
     }
 }

@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using WebServer.Context;
 using WebServer.Models;
@@ -8,7 +6,7 @@ using WebServer.RepositoryContracts;
 
 namespace WebServer.Repositories
 {
-    public class GroupRepository: IGroupRepository
+    public class GroupRepository : IGroupRepository
     {
         private readonly CoreDbContext _context;
 
@@ -17,14 +15,15 @@ namespace WebServer.Repositories
             _context = context;
         }
 
-        public IQueryable<Egroup> GetAllGroups()
+        public IQueryable<Egroup> GetAllGroups
         {
-            return _context.Set<Egroup>().AsQueryable();
+            get
+            {
+                var query = _context.Set<Egroup>().Where(g => g.IsActive != 0).AsQueryable();
+                return query;
+            }
         }
 
-        public IQueryable<Egroup> GetAllActiveGroups()
-        {
-            return _context.Set<Egroup>().Where(group => group.IsActive == 1).AsQueryable();
-        }
+        public IQueryable<Egroup> GetAllActiveGroups => throw new System.NotImplementedException();
     }
 }
